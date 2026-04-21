@@ -1,3 +1,22 @@
+<?php
+session_start();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $valid_username = "admin";
+    $valid_password = "password123";
+
+    if ($username === $valid_username && $password == $valid_password) {
+        $_SESSION['loggrdin'] = $true;
+        $_SESSION['username'] = $username;
+        header("Location: welcome.php");
+        exit();  
+    } else {
+        echo "<p style='color:red;'>Invalid username or password.</p>";
+    } 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +25,47 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h2>login from</h2>
+    <div class="login.from">
+     <from action="login-php" method="post">
+     <div class="from-group">
+    <label for="username">username:</labrl>
+    <input type="text" id="username" name="username" required><br><br>
+    </div>
+
+        <div class="from-group">
+              <label for="password">Password:</label>
+         <input type="password" id="password" name="password" required><br><br>
+         </div>
+        <button type="submit">Login</button>
+       <style>
+    body{
+        font-family:Arial;
+        max-width:400px;
+        margin: auto;
+    }
+    input,button{
+       width:100%
+       padding:8px;
+}
+button {
+    background-color: #4CAF50; /* 绿色背景 */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #45a049; /* 悬停颜色加深 */
+}button {
+    background-color: #4CAF50; /* 绿色背景 */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #45a049; /* 悬停颜色加深 */
+}
 </body>
 </html>
