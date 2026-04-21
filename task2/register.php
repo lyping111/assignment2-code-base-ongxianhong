@@ -4,16 +4,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $valid_username = "admin";
-    $valid_password = "password123";
-
-    if ($username === $valid_username && $password === $valid_password) {
-        $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $username;
-        header("Location: welcome.php");
-        exit();
+    $qry = "INSERT INTO project (username, password) VALUES ('$username', '$password')";
+    if (mysqli_query($conn, $qry)) {
+        echo "<p style='color:green;'>Registration successful! You can now <a href='login.php'>login</a>.</p>";
     } else {
-        echo "<p style='color:red;'>Invalid username or password.</p>";
+        echo "<p style='color:red;'>Error: " . mysqli_error($conn) . "</p>";
     }
 }
 ?>
@@ -49,8 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding:8px;
             margin:5px ;
         }
-    
-</body>
-</html>
+    </style>
 </body>
 </html>
