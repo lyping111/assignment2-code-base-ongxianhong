@@ -3,13 +3,11 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $qry = "SELECT * FROM project WHERE username='$username' AND password='$password'";
+    $result = mysqli_query($conn, $qry);
 
-    $valid_username = "admin";
-    $valid_password = "password123";
-
-    if ($username === $valid_username && $password == $valid_password) {
-        $_SESSION['loggrdin'] = true;
-        $_SESSION['username'] = $username;
+    if (mysqli_num_rows($result) == 1) {
+         $_SESSION['username'] = $username;
         header("Location: welcome.php");
         exit();  
     } else {
@@ -67,5 +65,6 @@ button:hover {
 button:hover {
     background-color: #45a049; /* 悬停颜色加深 */
 }
+</style>
 </body>
 </html>
