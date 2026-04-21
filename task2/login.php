@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $valid_password = "password123";
 
     if ($username === $valid_username && $password == $valid_password) {
-        $_SESSION['loggrdin'] = $true;
+        $_SESSION['loggrdin'] = true;
         $_SESSION['username'] = $username;
         header("Location: welcome.php");
         exit();  
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <h2>login from</h2>
     <div class="login.from">
-     <from action="login-php" method="post">
+     <form action="login.php" method="post">
      <div class="from-group">
     <label for="username">username:</labrl>
     <input type="text" id="username" name="username" required><br><br>
